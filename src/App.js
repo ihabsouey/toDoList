@@ -1,19 +1,36 @@
 import Form from './Form';
 import colorMode from './images/icon-sun.svg'
-
+import React from 'react';
+import Todolist from './Todolist';
 function App() {
+  const [todoList, setTodoList] = React.useState([{id:1 , title:'Check my email' , completed:false}]);
+
+  const [valueToAdd, setValueToAdd] = React.useState("")
+
+
   return (
     <div className="app">
-    <div className="container">
-         <div className="header">
-           <h1>T O D O</h1>
-           <img src={colorMode} height="auto" width="auto" />
-         </div>
-         
-           <div className="tasks">
-           <Form />
-           </div>
-    </div>
+      <div className="container">
+        <div className="header">
+          <h1>T O D O</h1>
+          <img src={colorMode} height="100%" width="auto"  alt='WhiteMode'/>
+        </div>
+
+        <div className="tasks">
+          <Form
+            todoList={todoList}
+            setTodoList={setTodoList}
+            valueToAdd={valueToAdd}
+            setValueToAdd={setValueToAdd}
+          />
+        </div>
+        <div className='list'>
+          <Todolist 
+          todoList={todoList}
+          setTodoList={setTodoList}
+          />
+        </div>
+      </div>
     </div>
   );
 }
