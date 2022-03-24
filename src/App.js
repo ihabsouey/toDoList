@@ -4,9 +4,14 @@ import React  , {useState , useEffect} from 'react';
 import Todolist from './Todolist';
 function App() {
 
-  const [todoList, setTodoList] = useState([{id:1 , title:'Check my email' , completed:false}]);
-  const [valueToAdd, setValueToAdd] = useState("")
-
+  const [todoList, setTodoList] = useState(() =>{
+    const localData = localStorage.getItem('todoList');
+    return localData ? JSON.parse(localData) :[] ;
+  });
+  const [valueToAdd, setValueToAdd] = useState("") ;
+  useEffect(() => {
+    localStorage.setItem('todoList' , JSON.stringify(todoList))
+  }, [todoList])
 
   return (
     <div className="app">
