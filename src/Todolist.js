@@ -1,9 +1,9 @@
-import React from 'react'
+import React , {useState} from 'react'
 import cross from './images/icon-cross.svg'
 import FilterButton from './FilterButton'
 
 const Todolist = ({ todoList, setTodoList }) => {
-    const [filter, setFilter] = React.useState('All');
+    const [filter, setFilter] = useState('All');
     const FILTER_MAP = {
         All: () => true,
         Active: task => !task.completed,

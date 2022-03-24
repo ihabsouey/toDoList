@@ -1,11 +1,11 @@
 import Form from './Form';
 import colorMode from './images/icon-sun.svg'
-import React from 'react';
+import React  , {useState , useEffect} from 'react';
 import Todolist from './Todolist';
 function App() {
-  const [todoList, setTodoList] = React.useState([{id:1 , title:'Check my email' , completed:false}]);
 
-  const [valueToAdd, setValueToAdd] = React.useState("")
+  const [todoList, setTodoList] = useState([{id:1 , title:'Check my email' , completed:false}]);
+  const [valueToAdd, setValueToAdd] = useState("")
 
 
   return (
