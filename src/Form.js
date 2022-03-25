@@ -6,7 +6,7 @@ const Form = ({todoList,setTodoList,valueToAdd,setValueToAdd} ) => {
     const submit = (e) => {
         e.preventDefault()
         if ((valueToAdd) && (valueToAdd!==' ') ){
-            setTodoList([{id:uuidv4() , title:valueToAdd , completed:false}, ...todoList])
+            setTodoList([ ...todoList ,{id:uuidv4() , title:valueToAdd , completed:false}])
             setValueToAdd('')
         }
        

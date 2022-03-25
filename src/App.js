@@ -1,7 +1,7 @@
 import Form from './Form';
-import colorMode from './images/icon-sun.svg'
 import React  , {useState , useEffect} from 'react';
 import Todolist from './Todolist';
+import DarkModeToggle from './DarkMode';
 function App() {
 
   const [todoList, setTodoList] = useState(() =>{
@@ -18,9 +18,9 @@ function App() {
       <div className="container">
         <div className="header">
           <h1>T O D O</h1>
-          <img src={colorMode} height="100%" width="auto"  alt='WhiteMode'/>
-        </div>
+        <DarkModeToggle/>
 
+        </div>
         <div className="tasks">
           <Form
             todoList={todoList}

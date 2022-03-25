@@ -4,6 +4,30 @@
   box-sizing: border-box;
   font-size: 18px;
 }
+  
+
+:root {
+  --icon-image:url("images/icon-moon.svg");
+  --back-image:url("images/bg-desktop-light.jpg");
+  --bg-color: hsl(0, 0%, 98%);
+  --alt-bg-color: white;
+  --font-color:   hsl(235, 19%, 35%);
+  --alt-font-color:  hsl(236, 9%, 61%);
+  --primary-color: #607d8b;
+  --secondary-color: #93B5C6;
+}
+
+.dark {
+  --icon-image:url("images/icon-sun.svg");
+
+  --back-image:url("images/bg-desktop-dark.jpg");
+
+  --bg-color: hsl(235, 21%, 11%);
+  --alt-bg-color: hsl(235, 24%, 19%);
+  --font-color: hsl(234, 39%, 85%);
+  --alt-font-color: hsl(234, 11%, 52%);
+ 
+}
 
 body {
   font-family: 'Josefin Sans', sans-serif;
@@ -14,8 +38,8 @@ body {
 .app {
   width: 100%;
   min-height: 100vh;
-  background-color: hsl(235, 21%, 11%);
-  background-image: url("images/bg-desktop-dark.jpg");
+  background-color: var(--bg-color);
+  background-image: var(--back-image);
   background-repeat: no-repeat;
   text-align: center;
   display: flex;
@@ -23,20 +47,27 @@ body {
 }
 
 .container {
+
   margin: 75px 0;
   width: 40%;
   max-width: 700px;
 
 }
-@media screen  and (max-width :1100px) {
+
+@media screen and (max-width :1100px) {
   .container {
-  min-width: none !important;
-
+    min-width: none !important;
     margin-top: 75px;
-  max-width: 500px;
-
+    max-width: 500px;
     width: 90%;
   }
+  .filterListMobile{
+    visibility: visible !important;
+  }
+  .filterList{
+    display: none;
+  }
+  
 }
 
 .header {
@@ -45,9 +76,11 @@ body {
   justify-content: space-between;
   color: white;
 }
-h1{
+
+h1 {
   font-size: 2.5em;
 }
+
 .add {
   position: relative;
   margin: 35px 0;
@@ -55,27 +88,31 @@ h1{
 }
 
 .task {
+  overflow: hidden;
   width: 100%;
   padding: 20px 55px;
-  background-color: hsl(235, 24%, 19%);
+  background-color: var( --alt-bg-color);
   text-align: start;
   font-weight: 400;
   font-size: 18px;
   border: none;
-  color: white;
+  color: var(--font-color);
   position: relative;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--alt-font-color) ;
 }
-.task:first-child{
-  border-radius: 7px 7px 0 0 ;
+
+.task:first-child {
+  border-radius: 7px 7px 0 0;
 }
-.task:last-child{
-  border-radius: 0 0  7px 7px ;
+
+
+.task:nth-last-child(-n+2) {
+  border-radius: 0 0 7px 7px;
   border: none;
 }
 
-#taskadd{
-  position:static;
+#taskadd {
+  position: static;
   border-radius: 7px;
 }
 
@@ -83,7 +120,7 @@ ul {
   list-style: none;
 }
 
-input[type="checkbox"] {
+.checkadd {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -97,49 +134,75 @@ input[type="checkbox"] {
   transform: scale(1);
 }
 
-input[type="checkbox"]:checked {
-  background: url("images/icon-check.svg") center no-repeat ,
+.checkadd:checked {
+  background: url("images/icon-check.svg") center no-repeat,
     linear-gradient(45deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
   border: none;
   background-size: 60%, 100%;
 
   ;
 }
+.checkadd:checked + span{
+  color: var(--alt-font-color);
+  text-decoration: line-through;
+}
 
-input[type="checkbox"]:hover {
+.checkadd:hover {
   border: 1px solid hsl(192, 100%, 67%);
-  transition: 0.5s ;
+  transition: 0.5s;
 
 }
-.imgcross{
+
+#darkToggler {
+  height: 1.45em;
+  width: 1.45em;
+
+  appearance: unset;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-size: 100%;
+  background: var(--icon-image);
+}
+
+.imgcross {
   position: absolute;
-  right:  0;
+  right: 0;
   margin-right: 20px;
   cursor: pointer;
 }
-.filter{
-  padding: 20px 10px;
+
+.filter {
+  padding: 20px 15px;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
 }
-.filter span{
+
+.filter span {
   font-size: 14px;
-  color: gray;
+  color: var(--alt-font-color);
 
 }
-button{
+
+button {
   background: none;
   border: none;
-  color: gray;
+  color: var(--alt-font-color);
   margin: 5px;
   font-size: 14px;
   cursor: pointer;
 }
-button:hover{
-  transition: 0.5s ease-in;
-  color: white;
+
+button:hover {
+  transition: 0.2s ease-in;
+  color: var(--font-color);
 }
-button[aria-pressed='true']{
-  color:hsl(220, 98%, 61%)
+
+button[aria-pressed='true'] {
+  color: hsl(220, 98%, 61%)
+}
+
+.filterListMobile{
+  text-align: center;
+  visibility: hidden;
 }

@@ -45,7 +45,8 @@ const Todolist = ({ todoList, setTodoList }) => {
                     {
                         todoList.filter(FILTER_MAP[filter]).map((todo) => {
                             return <li className='task' key={todo.id}>
-                                <input type="checkbox" className='check'  checked={todo.completed} onClick={() => handleComplete(todo)} /> {todo.title}
+                                <input type="checkbox" className='checkadd'  checked={todo.completed} onClick={() => handleComplete(todo)} /> 
+                                <span>{todo.title} </span> 
                                 <img className='imgcross' src={cross} alt='delete' onClick={() => handleDelete(todo)} />
                             </li>
 
@@ -54,14 +55,16 @@ const Todolist = ({ todoList, setTodoList }) => {
 
                     <li className='task filter'>
                         <span>{todoList.length} items left </span>
-                        <div>
-                            {/* <button id='All'  onClick={() => setFilter('All') }  > All </button>
-                            <button id='Active' onClick={() => setFilter('Active') } > Active </button>
-                            <button id='Completed'  onClick={() => setFilter('Completed') }  > Completed </button>
-                        */}
+                        <div className='filterList'>
+                             
                             {filterList}
                         </div>
                         <button id='ClearCompleted' onClick={() => handleClearCompleted()}> Clear Completed </button>
+                    </li>
+                    <li className='task add filterListMobile '>
+                             
+                             {filterList}
+
                     </li>
 
                 </ul>
