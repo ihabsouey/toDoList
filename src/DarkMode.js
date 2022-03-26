@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import colorMode from './images/icon-sun.svg'
 
 const getUserTheme = () => {
 	const theme = localStorage.getItem('theme') || 'dark';
@@ -16,7 +15,7 @@ const DarkModeToggle = () => {
 	
 	return (
 		<div className='toggle-btn'>
-            <input type="checkbox"  id="darkToggler" checked={isDarkMode} onClick={(e) => setIsDarkMode(e.target.checked)}>
+            <input type="checkbox"  id="darkToggler" checked={isDarkMode} onChange={(e) => setIsDarkMode(e.target.checked)}>
             </input>
 		</div>
 	)

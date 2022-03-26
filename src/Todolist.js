@@ -1,6 +1,8 @@
-import React , {useState} from 'react'
+import React, { useState } from 'react'
 import cross from './images/icon-cross.svg'
 import FilterButton from './FilterButton'
+import { Droppable, Draggable } from "react-beautiful-dnd";
+
 
 const Todolist = ({ todoList, setTodoList }) => {
     const [filter, setFilter] = useState('All');
@@ -19,7 +21,7 @@ const Todolist = ({ todoList, setTodoList }) => {
         />
     ));
 
-    
+
     const handleDelete = ({ id }) => {
         setTodoList(todoList.filter((todo) => todo.id !== id))
     }
@@ -41,33 +43,52 @@ const Todolist = ({ todoList, setTodoList }) => {
         <div>
 
             <div className='taskList'>
-                <ul className='tasks'>
-                    {
-                        todoList.filter(FILTER_MAP[filter]).map((todo) => {
-                            return <li className='task' key={todo.id}>
-                                <input type="checkbox" className='checkadd'  checked={todo.completed} onClick={() => handleComplete(todo)} /> 
-                                <span>{todo.title} </span> 
-                                <img className='imgcross' src={cross} alt='delete' onClick={() => handleDelete(todo)} />
+                <Droppable droppableId='drop1'>
+                    {(provided, snapshot) => (
+                        <ul className='tasks'
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                        >
+
+                            {
+                                todoList.filter(FILTER_MAP[filter]).map((todo, index) => {
+                                    return (
+                                        <Draggable key={todo.id} draggableId={"draggable-" + todo.id} index={index}>
+                                            {(provided) => (
+
+                                                <li index={index} className='task' key={todo.id}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                    ref={provided.innerRef}
+                                                >
+                                                    <input type="checkbox" className='checkadd' checked={todo.completed} onChange={() => handleComplete(todo)} />
+                                                    <span>{todo.title} </span>
+                                                    <img className='imgcross' src={cross} alt='delete' onClick={() => handleDelete(todo)} />
+                                                </li>
+                                            )}
+                                        </Draggable>
+                                    )
+                                })
+                            }
+                            {provided.placeholder}
+
+                            <li className='task filter'>
+                                <span>{todoList.length} items left </span>
+                                <div className='filterList'>
+                                    {filterList}
+                                </div>
+                                <button id='ClearCompleted' onClick={() => handleClearCompleted()}> Clear Completed </button>
+                            </li>
+                            <li className='task add filterListMobile '>
+                                {filterList}
+
                             </li>
 
-                        })
+                        </ul>
+                    )
                     }
+                </Droppable>
 
-                    <li className='task filter'>
-                        <span>{todoList.length} items left </span>
-                        <div className='filterList'>
-                             
-                            {filterList}
-                        </div>
-                        <button id='ClearCompleted' onClick={() => handleClearCompleted()}> Clear Completed </button>
-                    </li>
-                    <li className='task add filterListMobile '>
-                             
-                             {filterList}
-
-                    </li>
-
-                </ul>
             </div>
 
         </div>
