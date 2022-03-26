@@ -84,9 +84,12 @@ const Todolist = ({ todoList, setTodoList }) => {
 
                             </li>
 
+
                         </ul>
                     )
+                    
                     }
+
                 </Droppable>
 
             </div>

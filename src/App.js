@@ -48,8 +48,10 @@ function App() {
             />
           </div>
         </DragDropContext>
+        <span className='dragdroptext'>Drag and Drop to reorder list </span>
 
       </div>
+      
     </div>
   );
 }

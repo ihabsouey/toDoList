@@ -62,7 +62,7 @@ body {
     width: 90%;
   }
   .filterListMobile{
-    visibility: visible !important;
+    display: block !important;
   }
   .filterList{
     display: none;
@@ -107,6 +107,7 @@ h1 {
 
 
 .task:nth-last-child(-n+2) {
+  padding: 15px 55px;
   border-radius: 0 0 7px 7px;
   border: none;
 }
@@ -131,7 +132,6 @@ ul {
   height: 1.15em;
   border: 0.5px solid lightgray;
   border-radius: 50%;
-  transform: scale(1);
 }
 
 .checkadd:checked {
@@ -204,6 +204,12 @@ button[aria-pressed='true'] {
 
 .filterListMobile{
   text-align: center;
-  visibility: hidden;
+  display: none;
   border-radius: 7px !important  ;
+}
+.dragdroptext{
+  font-size: 14px;
+  top: 25px;
+  position: relative;
+  color: var(--alt-font-color) ;
 }
